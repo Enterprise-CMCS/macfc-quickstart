@@ -10,7 +10,7 @@ Please Note:
   Please make sure you understand what this script does and why you're using it.
 """
 
-stage=${1:-dev}
+stage=${1}
 
 echo "Fetching information for stage $stage..."
 
