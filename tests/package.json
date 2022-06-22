@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd ../ && ./dev local && cd -",
+    "start": "cd ../scripts && ./dev.sh local && cd -",
     "test:ci": "cypress install && cypress run --browser chrome --headless",
     "cypress": "cypress open",
     "test": "concurrently --kill-others \"yarn start\" \"cypress run --browser chrome  --config baseUrl=http://localhost:3000,integrationFolder=./cypress/cypress/integration --headed\""

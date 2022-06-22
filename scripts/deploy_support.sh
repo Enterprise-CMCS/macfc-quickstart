@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# input: a stage name (note that this script appends "-dev" to the provided stage name)
+#
+# iterates through the list of services and:
+# - installs dependencies
+# - deploys the service to the provided stage
+
+if [[ $1 == "" ]] ; then
+    echo 'ERROR:  You must pass a stage to deploy.  Ex. sh deploy_support.sh my-stage-name'
+    exit 1
+fi
+
 set -e
 
 stage=${1:-dev}

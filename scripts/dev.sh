@@ -14,7 +14,7 @@ if ! which node > /dev/null ; then
 fi
 
 # check node version
-if ! diff .nvmrc <(node -v) > /dev/null ; then
+if ! diff ../.nvmrc <(node -v) > /dev/null ; then
 	echo "Uh Oh! The current node version does not match the version required in .nvmrc"
 	echo "If you have installed nvm, simply running 'nvm use' in this directory should solve the problem"
 	echo "If you don't have nvm yet, the instructions in the README should sort you."
@@ -42,7 +42,7 @@ if [ "yarn.lock" -nt ".yarn_install" ]; then
 fi
 
 # if .env doesn't exist, copy .env_example there
-if [ ! -f .env ]; then 
+if [ ! -f .env ]; then
 	cp .env_example .env
 fi
 

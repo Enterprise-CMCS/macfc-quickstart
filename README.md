@@ -68,11 +68,11 @@ When run locally, auth bypasses Cognito. The frontend mimics login using local s
 
 - valid short-term access keys for your AWS account pasted in your terminal window
 
-Run _all_ the services locally with the command `./dev local`. For example,
+Run _all_ the services locally with the command `./scripts/dev.sh local`. For example,
 
 ```
 # from root directory of project
-$ ./dev local
+$ ./scripts/dev.sh local
 ```
 
 Note: This repo does not support selecting a subset of services to run locally.
@@ -86,7 +86,7 @@ You can view the app on localhost:3000.
 - valid short-term access keys for your AWS account pasted in your terminal window
 - a QuickStart stack, <stack>, deployed and running in AWS
 
-The QuickStart contains a script `services/ui-src/configureLocal.sh` that configures the frontend to run locally and connect with the backend services running in AWS.
+The QuickStart contains a script `services/ui-src/configure_local.sh` that configures the frontend to run locally and connect with the backend services running in AWS.
 You can view the app on localhost:3000.
 
 ```
@@ -94,18 +94,17 @@ You can view the app on localhost:3000.
 $ aws cloudformation list-stacks | grep <stage>  # confirm the stage is deployed
 # change to services/ui-src directory
 $ cd services/ui-src
-$ ./configureLocal.sh  <stage> # sets environment variables
+$ ./configure_local.sh  <stage> # sets environment variables
 $ npm run start                # start React frontend
 # login using valid credentials
 # to stop frontend, hit Control-C
 ```
 
-### Run Tests Locally
+### Run Tests Against Locally Deployed Services
 
-The test command is invoked by `./dev test`. The test command must be implemented by users of this repo (src/dev.ts). The implementation in this repo is a placeholder.
-
+`./scripts/dev.sh test` runs tests against locally deployed services. This is just a placeholder implementation and should be replaced with an actual implementation in `src/dev.ts`
 ```
-$ ./dev test
+$ ./scripts/dev.sh test
 "Testing 1. 2. 3."
 ```
 
@@ -117,7 +116,7 @@ $ ./dev test
 
 ```
 # from root directory of project
-$ ./deploy.sh <stage>
+$ ./scripts/deploy.sh <stage>
 ```
 
 After the deployment completes, verify all resources have been deployed.
@@ -132,12 +131,26 @@ To destroy AWS resources for a stage:
 
 ```
 # from root directory of project
-$ ./destroy.sh <stage>
+$ ./scripts/destroy.sh <stage>
 $ aws cloudformation list-stacks | grep <stage>  # This should return no matches.
 ```
 
 Note: Parameters created in AWS Systems Manager (SSM) parameter store are not destroyed.
 
+## Testing
+
+The Quickstart contains the following types of tests:
+
+### Unit tests
+These are component-based tests defined in the service folders in `/services`. They use
+- [Jest](https://jestjs.io/) as a test runner
+- the [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to facilitate querying the DOM in the same way the user would
+
+Unit tests can be run manually with the `scripts/unit_test.sh` script, and they are run automatically as part of the `deploy` GitHub Action
+### Integration tests
+These tests are
+
+### Accessibility tests
 ## Release
 
 Our product is promoted through branches. A developer branch is merged to the master branch. The master branch is merged to val to affect a val release, and the val branch is merged to production to affect a production release. Please use the buttons below to promote/release code to higher environments.<br />
