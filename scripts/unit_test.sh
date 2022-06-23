@@ -28,6 +28,10 @@ unit_test() {
   popd
 }
 
+# move to the top level directory of the repo
+TOP_LEVEL_DIR="$(git rev-parse --show-toplevel)"
+cd "$TOP_LEVEL_DIR"
+
 install_deps
 export PATH=$(pwd)/node_modules/.bin/:$PATH
 

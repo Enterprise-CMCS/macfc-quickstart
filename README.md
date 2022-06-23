@@ -84,7 +84,7 @@ You can view the app on localhost:3000.
 #### Pre-Requisites
 
 - valid short-term access keys for your AWS account pasted in your terminal window
-- a QuickStart stack, <stack>, deployed and running in AWS
+- a QuickStart stage, <stage>, deployed and running in AWS
 
 The QuickStart contains a script `services/ui-src/configure_local.sh` that configures the frontend to run locally and connect with the backend services running in AWS.
 You can view the app on localhost:3000.
@@ -95,7 +95,7 @@ $ aws cloudformation list-stacks | grep <stage>  # confirm the stage is deployed
 # change to services/ui-src directory
 $ cd services/ui-src
 $ ./configure_local.sh  <stage> # sets environment variables
-$ npm run start                # start React frontend
+$ yarn run start                # start React frontend
 # login using valid credentials
 # to stop frontend, hit Control-C
 ```
@@ -143,14 +143,21 @@ The Quickstart contains the following types of tests:
 
 ### Unit tests
 These are component-based tests defined in the service folders in `/services`. They use
+
 - [Jest](https://jestjs.io/) as a test runner
 - the [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to facilitate querying the DOM in the same way the user would
+- see [Amendments.test.js](services/ui-src/src/tests/Amendments.test.js) for an example of how to mock an API endpoint for a component-based test
 
 Unit tests can be run manually with the `scripts/unit_test.sh` script, and they are run automatically as part of the `deploy` GitHub Action
-### Integration tests
-These tests are
+### Integration and accessibility tests
+These tests are defined in the `tests/cypress` folder.  They use
 
-### Accessibility tests
+- [Cypress](https://docs.cypress.io) as a front-end testing tool
+- [Axe](https://github.com/dequelabs/axe-core) as an accessibility testing engine
+
+For more info, including how to run these tests locally, see the [testing README](tests/cypress/README.MD).
+Integration and accessibility tests are run automatically as part of the `deploy` GitHub Action.
+
 ## Release
 
 Our product is promoted through branches. A developer branch is merged to the master branch. The master branch is merged to val to affect a val release, and the val branch is merged to production to affect a production release. Please use the buttons below to promote/release code to higher environments.<br />
