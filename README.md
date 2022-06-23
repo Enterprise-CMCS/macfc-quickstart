@@ -103,6 +103,7 @@ $ yarn run start                # start React frontend
 ### Run Tests Against Locally Deployed Services
 
 `./scripts/dev.sh test` runs tests against locally deployed services. This is just a placeholder implementation and should be replaced with an actual implementation in `src/dev.ts`
+
 ```
 $ ./scripts/dev.sh test
 "Testing 1. 2. 3."
@@ -142,15 +143,18 @@ Note: Parameters created in AWS Systems Manager (SSM) parameter store are not de
 The Quickstart contains the following types of tests:
 
 ### Unit tests
+
 These are component-based tests defined in the service folders in `/services`. They use
 
 - [Jest](https://jestjs.io/) as a test runner
 - the [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to facilitate querying the DOM in the same way the user would
-- see [Amendments.test.js](services/ui-src/src/tests/Amendments.test.js) for an example of how to mock an API endpoint for a component-based test
+- API mocks (see [Amendments.test.js](services/ui-src/src/tests/Amendments.test.js) for an example of how to mock an API endpoint for a component-based test)
 
 Unit tests can be run manually with the `scripts/unit_test.sh` script, and they are run automatically as part of the `deploy` GitHub Action
+
 ### Integration and accessibility tests
-These tests are defined in the `tests/cypress` folder.  They use
+
+These tests are defined in the `tests/cypress` folder. They use
 
 - [Cypress](https://docs.cypress.io) as a front-end testing tool
 - [Axe](https://github.com/dequelabs/axe-core) as an accessibility testing engine
