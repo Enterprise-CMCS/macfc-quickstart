@@ -22,7 +22,7 @@ cd "$TOP_LEVEL_DIR"
 if ! diff .nvmrc <(node -v) > /dev/null ; then
 	echo "Uh Oh! The current node version does not match the version required in .nvmrc"
 	echo "If you have installed nvm, simply running 'nvm use' in this directory should solve the problem"
-	echo "If you don't have nvm yet, the instructions in the README should sort you."
+	echo "If you don't have nvm yet, follow the instructions in the README"
 	echo "** Don't forget to add the bit to your shell profile **"
 	exit 1
 fi

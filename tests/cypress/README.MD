@@ -12,9 +12,9 @@ The `scripts` section of `package.json` defines the following scripts:
 
 - `start`
 
-  - a wrapper to `dev.sh local`, which runs the application locally. Note that the `local` option for this script requires valid AWS credentials set per the [Serverless Framework docs](https://www.serverless.com/framework/docs/providers/aws/guide/credentials/)
+  - a wrapper to `scripts/dev.sh local`, which runs the application locally. Note that the `local` option for this script requires valid AWS credentials set per the [Serverless Framework docs](https://www.serverless.com/framework/docs/providers/aws/guide/credentials/)
 
-- ` test`
+- `test`
 
   - runs two parallel processes:
     1. the `start` script
